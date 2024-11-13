@@ -7,5 +7,6 @@
 </head>
 <body>
     <h1>Barbearia API</h1>
+    <a href="/api/documentation">Documentation</a>
 </body>
 </html>

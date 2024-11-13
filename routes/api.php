@@ -21,3 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 use App\Http\Controllers\ClienteController;
 Route::apiResource('clientes', ClienteController::class);
+
+use App\Http\Controllers\AgendamentoController;
+Route::apiResource('agendamentos', AgendamentoController::class);

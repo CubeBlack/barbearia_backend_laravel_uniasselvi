@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('cliente_id')->constrained('clientes');
             $table->date('data');
             $table->time('hora_inicio');
-            $table->time('hora_fim')->numllable();
+            $table->time('hora_fim')->nullable();
             $table->string('status')->default('pendente');
             $table->text('observacoes')->nullable();
             $table->timestamps();
