@@ -10,7 +10,11 @@ class AgendamentoController extends Controller
     // Listar todos os agendamentos
     public function index()
     {
-        return Agendamento::all();
+        // Obter todos os agendamentos com os dados do cliente (join implícito)
+        $agendamentos = Agendamento::with('cliente:id,nome')  // Aqui selecionamos 'id' e 'nome' do cliente
+                                   ->get();
+
+        return response()->json($agendamentos);
     }
 
     // Criar um novo agendamento
