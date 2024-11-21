@@ -24,3 +24,6 @@ Route::apiResource('clientes', ClienteController::class);
 
 use App\Http\Controllers\AgendamentoController;
 Route::apiResource('agendamentos', AgendamentoController::class);
+
+use App\Http\Controllers\UserController;
+Route::apiResource('users', UserController::class);
