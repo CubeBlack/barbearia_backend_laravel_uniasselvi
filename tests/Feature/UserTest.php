@@ -87,19 +87,35 @@ class UserTest extends TestCase
         $this->assertDatabaseHas('users', $updatedData);
     }
 
-    /**
-     * Testa a exclusão de um usuário.
-     */
     public function test_destroy_deletes_a_user()
     {
+        // Cria um usuário no banco de dados
         $user = User::factory()->create();
 
+        // Faz uma requisição DELETE para /api/users/{id}
         $response = $this->deleteJson("/api/users/{$user->id}");
 
-        $response->assertStatus(204); // Sem conteúdo após exclusão
+        // Verifica se a resposta tem status 200
+        $response->assertStatus(200)
+                 ->assertJson([
+                     'message' => 'User deleted successfully.',
+                 ]);
 
+        // Verifica se o usuário foi removido do banco
         $this->assertDatabaseMissing('users', [
             'id' => $user->id,
         ]);
+    }
+
+    public function test_destroy_returns_404_if_user_not_found()
+    {
+        // Faz uma requisição DELETE para um ID inexistente
+        $response = $this->deleteJson('/api/users/999');
+
+        // Verifica se a resposta tem status 404
+        $response->assertStatus(404)
+                 ->assertJson([
+                     'message' => 'User not found.',
+                 ]);
     }
 }
