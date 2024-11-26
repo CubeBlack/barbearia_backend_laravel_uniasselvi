@@ -36,7 +36,7 @@ class AgendamentoController extends Controller
     // Exibir um agendamento específico
     public function show($id)
     {
-        $agendamento = Agendamento::findOrFail($id);
+        $agendamento = Agendamento::with('cliente:id,nome')->findOrFail($id);
         return response()->json($agendamento);
     }
 
